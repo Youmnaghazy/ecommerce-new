@@ -1,0 +1,71 @@
+@if (prodData()._id) {
+<section class="min-h-[70vh] bg-slate-50 px-4 py-10 sm:px-6 lg:py-16">
+    <div class="mx-auto max-w-7xl">
+        <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-sm text-slate-500">
+            <span>Home</span>
+            <i aria-hidden="true" class="fas fa-chevron-right text-[10px]"></i>
+            <span>{{ prodData().category.name }}</span>
+            <i aria-hidden="true" class="fas fa-chevron-right text-[10px]"></i>
+            <span aria-current="page" class="truncate font-medium text-slate-800">{{ prodData().title }}</span>
+        </nav>
+
+        <div class="grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm lg:grid-cols-2">
+            <div class="relative flex min-h-80 items-center justify-center overflow-hidden bg-slate-50 p-8 sm:p-12 lg:min-h-[560px]">
+                <div aria-hidden="true" class="absolute h-72 w-72 rounded-full bg-green-100/70 blur-3xl"></div>
+                <span class="absolute left-6 top-6 z-10 rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-green-700 shadow-sm">
+                    {{ prodData().category.name }}
+                </span>
+                <img
+                    [src]="prodData().imageCover"
+                    [alt]="prodData().title"
+                    class="relative z-10 max-h-[460px] w-full object-contain drop-shadow-xl"
+                />
+            </div>
+
+            <div class="flex flex-col p-6 sm:p-10 lg:p-14">
+                <p class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-green-700">
+                    {{ prodData().brand.name }}
+                </p>
+                <h1 class="text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
+                    {{ prodData().title }}
+                </h1>
+
+                <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+                    <div class="flex items-center gap-1 text-amber-400" aria-label="Product rating">
+                        <i aria-hidden="true" class="fas fa-star"></i>
+                        <span class="ml-1 font-semibold text-slate-800">{{ prodData().ratingsAverage }}</span>
+                    </div>
+                    <span class="text-sm text-slate-400">|</span>
+                    <span class="text-sm text-slate-500">{{ prodData().ratingsQuantity }} customer reviews</span>
+                </div>
+
+                <p class="mt-6 text-base leading-7 text-slate-600">
+                    {{ prodData().description }}
+                </p>
+
+                <div class="my-8 border-t border-slate-200"></div>
+
+                <div class="mb-8">
+                    <p class="mb-1 text-sm font-medium text-slate-500">Price</p>
+                    <p class="text-3xl font-bold tracking-tight text-slate-900">
+                        {{ prodData().price }} <span class="text-lg font-semibold text-slate-500">EGP</span>
+                    </p>
+                </div>
+
+                <div class="mt-auto">
+                    <button
+                        type="button"
+                        class="flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl bg-green-700 px-6 py-4 font-semibold text-white shadow-sm transition hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-200"
+                    >
+                        <i aria-hidden="true" class="fas fa-cart-plus"></i>
+                        Add to cart
+                    </button>
+                    <p class="mt-4 text-center text-xs text-slate-500">
+                        {{ prodData().category.name }} · {{ prodData().brand.name }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}
