@@ -1,1 +1,204 @@
-<p>register works!</p>
+<main class="px-4 py-8 sm:px-6 lg:py-12">
+  <div class="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2 lg:gap-16">
+    <section class="flex flex-col justify-center" aria-labelledby="welcome-title">
+      <h1 id="welcome-title" class="text-3xl font-bold tracking-tight text-slate-800">
+        Welcome to <span class="text-green-600">FreshCart</span>
+      </h1>
+      <p class="mt-3 max-w-lg text-slate-600">
+        Join thousands of happy customers who enjoy fresh groceries delivered right to their doorstep.
+      </p>
+
+      <ul class="mt-8 space-y-5">
+        <li class="flex items-start gap-3">
+          <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600" aria-hidden="true">
+            <i class="fa-solid fa-star"></i>
+          </span>
+          <div>
+            <h2 class="font-semibold text-slate-800">Premium Quality</h2>
+            <p class="mt-1 text-sm text-slate-600">Premium quality products sourced from trusted suppliers.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600" aria-hidden="true">
+            <i class="fa-solid fa-truck"></i>
+          </span>
+          <div>
+            <h2 class="font-semibold text-slate-800">Fast Delivery</h2>
+            <p class="mt-1 text-sm text-slate-600">Same-day delivery available in most areas.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600" aria-hidden="true">
+            <i class="fa-solid fa-shield-halved"></i>
+          </span>
+          <div>
+            <h2 class="font-semibold text-slate-800">Secure Shopping</h2>
+            <p class="mt-1 text-sm text-slate-600">Your data and payments are completely secure.</p>
+          </div>
+        </li>
+      </ul>
+
+      <figure class="mt-8 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <figcaption class="flex items-center gap-3">
+          <span class="flex size-10 items-center justify-center rounded-full bg-green-100 text-lg font-semibold text-green-700" aria-hidden="true">S</span>
+          <span>
+            <span class="block font-medium text-slate-800">Sarah Johnson</span>
+            <span class="text-amber-400" aria-label="5 out of 5 stars">★★★★★</span>
+          </span>
+        </figcaption>
+        <blockquote class="mt-3 text-sm italic leading-relaxed text-slate-600">
+          “FreshCart has transformed my shopping experience. The quality of the products is outstanding, and the delivery is always on time. Highly recommend!”
+        </blockquote>
+      </figure>
+    </section>
+
+    <section class="rounded-xl bg-white p-5 shadow-lg ring-1 ring-slate-100 sm:p-8" aria-labelledby="register-title">
+      <header class="text-center">
+        <h2 id="register-title" class="text-2xl font-semibold text-slate-800">Create Your Account</h2>
+        <p class="mt-2 text-sm text-slate-600">Start your fresh journey with us today</p>
+      </header>
+
+      <div class="mt-6 grid grid-cols-2 gap-3">
+        <button type="button" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100">
+          <span class="font-bold text-red-500" aria-hidden="true">G</span>
+          Google
+        </button>
+        <button type="button" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100">
+          <i class="fa-brands fa-facebook text-blue-600" aria-hidden="true"></i>
+          Facebook
+        </button>
+      </div>
+
+      <div class="my-5 flex items-center gap-3 text-sm text-slate-500" aria-hidden="true">
+        <span class="h-px flex-1 bg-slate-200"></span>
+        or
+        <span class="h-px flex-1 bg-slate-200"></span>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4" novalidate>
+        <div>
+          <label for="register-name" class="mb-1.5 block text-sm font-medium text-slate-700">Name</label>
+          <input
+            id="register-name"
+            type="text"
+            formControlName="name"
+            autocomplete="name"
+            placeholder="Your name"
+            [attr.aria-invalid]="registerForm.controls.name.invalid && registerForm.controls.name.touched"
+            class="block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:ring-green-500"
+          />
+          @if (registerForm.controls.name.touched && registerForm.controls.name.hasError('required')) {
+            <p class="mt-1 text-sm text-red-600">Please enter your name.</p>
+          }
+        </div>
+
+        <div>
+          <label for="register-email" class="mb-1.5 block text-sm font-medium text-slate-700">Email</label>
+          <input
+            id="register-email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            [attr.aria-invalid]="registerForm.controls.email.invalid && registerForm.controls.email.touched"
+            class="block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:ring-green-500"
+          />
+          @if (registerForm.controls.email.touched && registerForm.controls.email.invalid) {
+            <p class="mt-1 text-sm text-red-600">
+              {{ registerForm.controls.email.hasError('required') ? 'Please enter your email.' : 'Enter a valid email address.' }}
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="register-password" class="mb-1.5 block text-sm font-medium text-slate-700">Password</label>
+          <input
+            id="register-password"
+            type="password"
+            formControlName="password"
+            autocomplete="new-password"
+            placeholder="Create a strong password"
+            [attr.aria-invalid]="registerForm.controls.password.invalid && registerForm.controls.password.touched"
+            class="block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:ring-green-500"
+          />
+          @if (registerForm.controls.password.touched && registerForm.controls.password.invalid) {
+            <p class="mt-1 text-sm text-red-600">
+              {{ registerForm.controls.password.hasError('required') ? 'Please enter a password.' : 'Password must be at least 6 characters.' }}
+            </p>
+          } @else {
+            <p class="mt-1 text-xs text-slate-500">Use at least 6 characters.</p>
+          }
+        </div>
+
+        <div>
+          <label for="register-repassword" class="mb-1.5 block text-sm font-medium text-slate-700">Confirm Password</label>
+          <input
+            id="register-repassword"
+            type="password"
+            formControlName="rePassword"
+            autocomplete="new-password"
+            placeholder="Confirm your password"
+            [attr.aria-invalid]="(registerForm.controls.rePassword.invalid || (registerForm.hasError('passwordMismatch') && registerForm.controls.rePassword.touched))"
+            class="block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:ring-green-500"
+          />
+          @if (registerForm.controls.rePassword.touched && registerForm.controls.rePassword.hasError('required')) {
+            <p class="mt-1 text-sm text-red-600">Please confirm your password.</p>
+          } @else if (registerForm.hasError('passwordMismatch') && registerForm.controls.rePassword.touched) {
+            <p class="mt-1 text-sm text-red-600">Passwords do not match.</p>
+          }
+        </div>
+
+        <div>
+          <label for="register-phone" class="mb-1.5 block text-sm font-medium text-slate-700">Phone Number</label>
+          <input
+            id="register-phone"
+            type="tel"
+            formControlName="phone"
+            autocomplete="tel"
+            placeholder="+1 234 567 8900"
+            [attr.aria-invalid]="registerForm.controls.phone.invalid && registerForm.controls.phone.touched"
+            class="block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:ring-green-500"
+          />
+          @if (registerForm.controls.phone.touched && registerForm.controls.phone.hasError('required')) {
+            <p class="mt-1 text-sm text-red-600">Please enter your phone number.</p>
+          }
+        </div>
+
+        <label class="flex items-start gap-2 text-sm text-slate-600">
+          <input type="checkbox" required class="mt-0.5 size-4 rounded border-slate-300 text-green-600 focus:ring-green-500" />
+          <span>I agree to the <a href="#" class="text-green-600 hover:underline">Terms of Service</a> and <a href="#" class="text-green-600 hover:underline">Privacy Policy</a>.</span>
+        </label>
+
+        @if (errorMessage()) {
+          <p role="alert" class="rounded-lg bg-red-50 p-3 text-sm text-red-700">{{ errorMessage() }}</p>
+        }
+        @if (successMessage()) {
+          <p role="status" class="rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ successMessage() }}</p>
+        }
+
+        <button
+          type="submit"
+          [disabled]="isLoading()"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-200 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          @if (isLoading()) {
+            <svg aria-hidden="true" class="size-5 animate-spin fill-white text-green-200" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08164 50.5908C9.08164 73.1854 27.4054 91.5092 50 91.5092C72.5946 91.5092 90.9184 73.1854 90.9184 50.5908C90.9184 27.9962 72.5946 9.67246 50 9.67246C27.4054 9.67246 9.08164 27.9962 9.08164 50.5908Z" fill="currentColor"/>
+              <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 11.3578 75.2124 8.60958C69.5422 5.86136 63.2754 4.1885 56.7835 3.47357C51.7666 2.92196 46.6976 3.0192 41.7345 3.75884C39.2613 4.12721 37.813 6.66492 38.4501 9.09034C39.0873 11.5158 41.6016 12.933 44.0777 12.608C47.8515 12.1138 51.6779 12.1235 55.4445 12.6419C60.8563 13.3874 66.0157 15.0758 70.6287 17.6952C75.2418 20.3147 79.2927 23.8073 82.4985 28.0093C84.737 30.9409 86.5398 34.185 87.821 37.5773C88.6941 39.8901 91.5422 39.678 93.9676 39.0409Z" fill="currentFill"/>
+            </svg>
+            Creating account...
+          } @else {
+            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+            Create My Account
+          }
+        </button>
+      </form>
+
+      <p class="mt-6 border-t border-slate-100 pt-5 text-center text-sm text-slate-600">
+        Already have an account?
+        <a routerLink="/login" class="font-medium text-green-600 hover:text-green-700 hover:underline">Sign In</a>
+      </p>
+    </section>
+  </div>
+</main>
+
